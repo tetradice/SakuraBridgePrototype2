@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace SakuraBridge
 {
-    public class Bridge
+    public class DllExporter
     {
         [DllExport]
         public static bool load(IntPtr dllDirPathPtr, int len)
@@ -14,6 +14,8 @@ namespace SakuraBridge
 
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(dllDirPathPtr);
+
+            Debug.WriteLine(dllDirPath);
 
             return true; // 正常終了
         }
