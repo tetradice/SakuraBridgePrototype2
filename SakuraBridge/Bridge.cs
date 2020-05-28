@@ -1,31 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 
 namespace SakuraBridge
 {
     public class Bridge
     {
         [DllExport]
-        public static int Count(IntPtr stringPtr)
+        public static bool load(IntPtr dllDirPathPtr, long len)
         {
-            var str = Marshal.PtrToStringAuto(stringPtr);    // IntPtrをstring型に変換
-            return str?.Length ?? 0;                         // intやdoubleなどのプリミティブはそのままreturnでOK!!
+            var dllDirPath = Marshal.PtrToStringAuto(dllDirPathPtr);    // IntPtrをstring型に変換
+            return true; // 正常終了
         }
 
         [DllExport]
-        public static IntPtr Through(IntPtr stringPtr)
+        public static bool unload()
         {
-            var str = Marshal.PtrToStringAuto(stringPtr);    // IntPtrをstring型に変換
-            return Marshal.StringToHGlobalAuto(str);         // string型をIntPtrに変換してreturn
+            return true; // 正常終了
         }
 
         [DllExport]
-        public static IntPtr GetString()
+        public static IntPtr request(IntPtr messagePtr, long len)
         {
-            return Marshal.StringToHGlobalAuto("hoge fuga piyo");    // string型をIntPtrに変換してreturn
+            var message = Marshal.PtrToStringAuto(messagePtr);    // IntPtrをstring型に変換
+
+            var res = "SHIORI/2.0 200 OK";
+
+            return Marshal.StringToHGlobalAuto(res); // stringをHGLOBALに変換
         }
     }
 }
