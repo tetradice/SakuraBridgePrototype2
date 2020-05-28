@@ -240,3 +240,5 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/plugin/SakuraBridge.dll
+/plugin/SakuraBridgePrototype/SakuraBridge.dll
