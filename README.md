@@ -1,6 +1,6 @@
 # ビルドと動作確認手順
 
-1. DllExport.bat を実行 (必要なpackageがインストールされる)
+1. DllExport.bat を実行し、設定ダイアログが出てきたらそのまま右上の [Apply] をクリック (必要なpackageがインストールされる)
 
    なお、このbatは DllExport 1.7.1 としてリリースされたものをそのままコピーしています。
    <https://github.com/3F/DllExport>
