@@ -12,7 +12,7 @@ namespace SakuraBridge
         {
             var dllDirPath = Marshal.PtrToStringAnsi(dllDirPathPtr);    // IntPtrをstring型に変換
 
-            // HGLOBALハンドルを解放
+            // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(dllDirPathPtr);
 
             return true; // 正常終了
@@ -30,15 +30,12 @@ namespace SakuraBridge
             var message = Marshal.PtrToStringAnsi(messagePtr);    // IntPtrをstring型に変換
             var len = Marshal.ReadInt32(lenPtr);  // メッセージ長を読み取る
 
-            // HGLOBALハンドルを解放
+            // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(messagePtr);
 
             // responseを返す
-            var resStr = "PLUGIN/2.0 200 OK\r\n\r\n" + '\0';
-            var resBytes = System.Text.Encoding.ASCII.GetBytes(resStr);
-            var resPtr = Marshal.AllocHGlobal(resBytes.Length);
-            Marshal.Copy(resBytes, 0, resPtr, resBytes.Length);
-
+            var resStr = "PLUGIN/2.0 200 OK\r\n\r\n";
+            Marshal.WriteInt32(lenPtr, resStr.Length);
             return Marshal.StringToHGlobalAnsi(resStr);
         }
     }
