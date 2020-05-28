@@ -1,7 +1,8 @@
 # ビルドと動作確認手順
 
 1. DllExport.bat を実行 (必要なpackageがインストールされる)
-   なお、このbatは DllExport 1.7.1 としてリリースされたものをそのままコピーしています
+
+   なお、このbatは DllExport 1.7.1 としてリリースされたものをそのままコピーしています。
    <https://github.com/3F/DllExport>
 
 2. Visual Studio 2015以降で SakuraBridge.sln を開く
