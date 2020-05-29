@@ -7,8 +7,8 @@
     <ProjectGuid>{1E84BF09-BC20-4BDD-843E-297C8CF9E4AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SakuraBridge</RootNamespace>
-    <AssemblyName>SakuraBridge</AssemblyName>
+    <RootNamespace>SakuraBridge.Export</RootNamespace>
+    <AssemblyName>SakuraBridge.Export</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\plugin\SakuraBridgePrototype\</OutputPath>
+    <OutputPath>..\..\..\ukagaka\plugin\SakuraBridgePrototype\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -64,8 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DllExporter.cs" />
-    <Compile Include="IClient.cs" />
+    <Compile Include="EntryPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +74,8 @@
       <Wz>1</Wz>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
+  <Import Project="..\Shared\Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport">
     <Import Project="$(SolutionDir)packages\DllExport.1.7.1\tools\net.r_eg.DllExport.targets" Condition="Exists($([MSBuild]::Escape('$(SolutionDir)packages\DllExport.1.7.1\tools\net.r_eg.DllExport.targets')))" Label="8337224c9ad9e356" />

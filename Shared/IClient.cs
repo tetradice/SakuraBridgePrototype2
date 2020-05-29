@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SakuraBridge
+namespace SakuraBridge.Shared
 {
     /// <summary>
     /// 実際にリクエストを処理するクラスのインターフェース
@@ -14,7 +14,7 @@ namespace SakuraBridge
         /// <summary>
         /// DLLのロード時に呼び出される処理
         /// </summary>
-        /// <param name="dllDirPath">DLLが置かれているパス</param>
+        /// <param name="dllDirPath">DLLが存在するパス</param>
         void Load(string dllDirPath);
 
         /// <summary>

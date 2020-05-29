@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace SakuraBridge
+namespace SakuraBridge.EntryPoint
 {
-    public class DllExporter
+    public class EntryPoint
     {
         [DllExport]
         public static bool load(IntPtr dllDirPathPtr, int len)
@@ -15,7 +17,22 @@ namespace SakuraBridge
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(dllDirPathPtr);
 
-            Debug.WriteLine(dllDirPath);
+            // IClient型の名前を取得
+            var iClientName = typeof(Shared.IClient).FullName;
+
+            // クライアントのLoadメソッドを実行
+            var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, @"..\BridgeTest.dll"));
+            foreach (var type in asm.GetTypes())
+            {
+                // IClient型を実装したクラスを探す
+                if(type.GetInterface(iClientName) != null)
+                {
+                    var t1 = typeof(Shared.IClient);
+                    var t2 = asm.GetType(iClientName);
+                    var client = (Shared.IClient)asm.CreateInstance(type.FullName);
+                    Debug.WriteLine(client);
+                }
+            }
 
             return true; // 正常終了
         }
