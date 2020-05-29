@@ -5,10 +5,18 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace SakuraBridge.EntryPoint
+namespace SakuraBridge.Export
 {
-    public class EntryPoint
+    /// <summary>
+    /// ベースウェアから直接呼び出されるDLL関数のエクスポート
+    /// </summary>
+    public static class Export
     {
+        /// <summary>
+        /// .NETアセンブリから読み込んだSakuraBridgeモジュール
+        /// </summary>
+        public static dynamic Module;
+
         [DllExport]
         public static bool load(IntPtr dllDirPathPtr, int len)
         {
@@ -17,20 +25,20 @@ namespace SakuraBridge.EntryPoint
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(dllDirPathPtr);
 
-            // IClient型の名前を取得
-            var iClientName = typeof(Shared.IClient).FullName;
-
-            // クライアントのLoadメソッドを実行
+            // モジュールを読み込む
             var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, @"..\BridgeTest.dll"));
             foreach (var type in asm.GetTypes())
             {
-                // IClient型を実装したクラスを探す
-                if(type.GetInterface(iClientName) != null)
+                // SakuraBridge.Library.IModule 型を実装したクラス1つを探す
+                // (DllExportでは通常のプロジェクト参照は動作しない？ ように思われるため、型名を直接指定してdynamic型で処理)
+                if (type.GetInterface("SakuraBridge.Library.IModule") != null)
                 {
-                    var t1 = typeof(Shared.IClient);
-                    var t2 = asm.GetType(iClientName);
-                    var client = (Shared.IClient)asm.CreateInstance(type.FullName);
-                    Debug.WriteLine(client);
+                    Module = asm.CreateInstance(type.FullName);
+
+                    // ModuleのLoad処理を呼び出す
+                    Module.Load(asm.Location);
+
+                    break;
                 }
             }
 
@@ -40,6 +48,9 @@ namespace SakuraBridge.EntryPoint
         [DllExport]
         public static bool unload()
         {
+            // ModuleのUnload処理を呼び出す
+            Module.Unload();
+
             return true; // 正常終了
         }
 
@@ -52,8 +63,10 @@ namespace SakuraBridge.EntryPoint
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(messagePtr);
 
+            // ModuleのRequest処理を呼び出す
+            string resStr = Module.Request(message);
+
             // responseを返す
-            var resStr = "PLUGIN/2.0 200 OK\r\n\r\n";
             Marshal.WriteInt32(lenPtr, resStr.Length);
             return Marshal.StringToHGlobalAnsi(resStr);
         }

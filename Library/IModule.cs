@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SakuraBridge.Shared
+namespace SakuraBridge.Library
 {
     /// <summary>
     /// 実際にリクエストを処理するクラスのインターフェース
     /// </summary>
-    public interface IClient
+    public interface IModule
     {
         /// <summary>
         /// DLLのロード時に呼び出される処理
         /// </summary>
-        /// <param name="dllDirPath">DLLが存在するパス</param>
+        /// <param name="dllDirPath">アセンブリDLLが存在するパス</param>
         void Load(string dllDirPath);
 
         /// <summary>

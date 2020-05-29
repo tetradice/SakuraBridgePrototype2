@@ -7,17 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Export", "SakuraBridge\Expo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{DF8C43CD-024C-4058-8E37-592A5EF752C0}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{BA780EFE-1195-4037-8391-C1A822908783}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTest", "BridgeTest\BridgeTest.csproj", "{7021D5CD-7B45-41FE-929B-ABE6EAF45289}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Shared\Shared.projitems*{1e84bf09-bc20-4bdd-843e-297c8cf9e4ad}*SharedItemsImports = 4
-		Shared\Shared.projitems*{7021d5cd-7b45-41fe-929b-abe6eaf45289}*SharedItemsImports = 4
-		Shared\Shared.projitems*{ba780efe-1195-4037-8391-c1a822908783}*SharedItemsImports = 13
-		Shared\Shared.projitems*{df8c43cd-024c-4058-8e37-592a5ef752c0}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

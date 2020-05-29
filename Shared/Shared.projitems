@@ -9,6 +9,6 @@
     <Import_RootNamespace>Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)IClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IModule.cs" />
   </ItemGroup>
 </Project>
