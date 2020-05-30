@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Export", "SakuraBridge\Export.csproj", "{1E84BF09-BC20-4BDD-843E-297C8CF9E4AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Export", "Export\Export.csproj", "{1E84BF09-BC20-4BDD-843E-297C8CF9E4AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{DF8C43CD-024C-4058-8E37-592A5EF752C0}"
 EndProject
