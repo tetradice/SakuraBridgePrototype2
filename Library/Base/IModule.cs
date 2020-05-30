@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SakuraBridge.Library
 {
     /// <summary>
-    /// 実際にリクエストを処理するクラスのインターフェース
+    /// 実際にリクエストを処理するモジュールクラスのインターフェース
     /// </summary>
     public interface IModule
     {

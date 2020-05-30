@@ -1,0 +1,17 @@
+//文字コード
+charset,Shift_JIS
+
+//名前
+name,SakuraBridge
+
+//PLUGIN DLL
+filename,x86\SakuraBridge.Export.dll
+
+//オプション指定-OnSecondChangeの通知頻度
+//0で無効、標準1
+secondchangeinterval,0
+
+//プラグインID
+//http://www.famkruithof.net/uuid/uuidgen とかで生成できます
+//一度書いたら変えないこと
+id,a7f4f18e-b880-4922-a294-d257dd472f3a

@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IModule.cs" />
+    <Compile Include="Base\IModule.cs" />
+    <Compile Include="Base\Message.cs" />
+    <Compile Include="Base\Response.cs" />
+    <Compile Include="Plugin\PluginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestBase.cs" />
+    <Compile Include="Base\Request.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Plugin\" />
     <Folder Include="Saori\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
