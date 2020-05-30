@@ -2,7 +2,7 @@
 charset,Shift_JIS
 
 //–¼‘O
-name,SakuraBridge
+name,SakuraBridgeTest
 
 //PLUGIN DLL
 filename,x86\SakuraBridge.Export.dll

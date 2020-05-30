@@ -54,34 +54,62 @@ namespace SakuraBridge.Library
         }
 
         /// <summary>
-        /// Reference0, 1, 2... のリストを取得
+        /// Reference0, 1, 2... のリストを取得/設定
         /// </summary>
         public virtual List<string> References
         {
-            get
-            {
-                var refs = new List<string>();
-                for (var i = 0; true; i++)
-                {
-                    var name = string.Format("Reference{0}", i);
-                    if (Contains(name))
-                    {
-                        refs.Add(this[name]);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+            get { return GetSequentialHeaderValues("Reference"); }
+            set { SetSequentialHeaderValues("Reference", value); }
+        }
 
-                return refs;
+        /// <summary>
+        /// Reference0, 1, 2... やArgument0, 1, 2... など、連番方式のヘッダ値をListとして取得
+        /// </summary>
+        public virtual List<string> GetSequentialHeaderValues(string prefix)
+        {
+            var values = new List<string>();
+            for (var i = 0; true; i++)
+            {
+                var name = prefix + i.ToString();
+                if (Contains(name))
+                {
+                    values.Add(this[name]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return values;
+        }
+
+        /// <summary>
+        /// Reference0, 1, 2... やArgument0, 1, 2... など、連番方式のヘッダ値を設定する。既存の設定値はクリアされる
+        /// </summary>
+        public virtual void SetSequentialHeaderValues(string prefix, IList<string> values)
+        {
+            // 既存値をクリア
+            foreach (var name in HeaderNames)
+            {
+                if (name.StartsWith(prefix))
+                {
+                    Remove(name);
+                }
+            }
+
+            // 値を設定
+            for (var i = 0; i < values.Count; i++)
+            {
+                var name = prefix + i.ToString();
+                this[name] = values[i];
             }
         }
 
         /// <summary>
         /// ヘッダ名のコレクションを取得
         /// </summary>
-        public virtual IEnumerable<string> HeaderKeys { get { return Headers.Keys; } }
+        public virtual ICollection<string> HeaderNames { get { return Headers.Keys; } }
 
         /// <summary>
         /// Charsetヘッダ
