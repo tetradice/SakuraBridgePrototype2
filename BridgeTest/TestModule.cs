@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,13 @@ namespace BridgeTest
 {
     public class TestModule : IModule
     {
+        protected string DllDirPath;
+        protected AppDomain FormAppDomain;
+
         public virtual void Load(string dllDirPath)
         {
             Debug.WriteLine("[module load]");
+            DllDirPath = dllDirPath;
         }
 
         public virtual string Request(string msg)
@@ -35,9 +40,15 @@ namespace BridgeTest
 
             if(req.ID == "OnMenuExec")
             {
-                res["Script"] = @"\0OnMenuExecイベントが呼び出されました。\e";
+                res.Script = @"\0OnMenuExecイベントが呼び出されました。\e";
+
+                FormAppDomain = AppDomain.CreateDomain("子画面");
+                Task.Run(() =>
+                {
+                    FormAppDomain.ExecuteAssembly(Path.Combine(DllDirPath, "BridgeTestForm.exe"));
+                });
             }
-            Debug.WriteLine(req.ToString());
+            Debug.WriteLine(res.ToString());
 
             return res.ToString();
         }
@@ -45,6 +56,7 @@ namespace BridgeTest
         public virtual void Unload()
         {
             Debug.WriteLine("[module unload]");
+            AppDomain.Unload(FormAppDomain);
         }
     }
 }

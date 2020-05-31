@@ -37,7 +37,7 @@ namespace SakuraBridge.Export
                     Module = asm.CreateInstance(type.FullName);
 
                     // ModuleのLoad処理を呼び出す
-                    Module.Load(asm.Location);
+                    Module.Load(Path.GetDirectoryName(asm.Location));
 
                     break;
                 }
