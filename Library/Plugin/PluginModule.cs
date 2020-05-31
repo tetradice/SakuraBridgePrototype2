@@ -49,23 +49,29 @@ namespace SakuraBridge.Library
             }
 
             // レスポンスの生成
-            PluginResponse res;
-            if (req.ID == "version")
-            {
-                res = PluginResponse.OK();
-                res["Value"] = this.Version;
-            }
-            else if (req.ID == "OnMenuExec")
-            {
-                res = OnMenuExec(req);
-            }
-            else
-            {
-                res = new PluginResponse(CommonStatusCode.NotImplemented);
-            }
+            var res = MakeResponse(req);
+
             Debug.WriteLine(res.ToString());
 
             return res.ToString();
+        }
+
+        public virtual PluginResponse MakeResponse(PluginRequest req)
+        {
+            if (req.ID == "version")
+            {
+                var res = PluginResponse.OK();
+                res["Value"] = this.Version;
+                return res;
+            }
+            else if (req.ID == "OnMenuExec")
+            {
+                return OnMenuExec(req);
+            }
+            else
+            {
+                return new PluginResponse(CommonStatusCode.NotImplemented);
+            }
         }
 
         /// <summary>
