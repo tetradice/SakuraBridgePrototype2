@@ -40,9 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Exceptions.cs" />
     <Compile Include="Base\IModule.cs" />
     <Compile Include="Base\Message.cs" />
     <Compile Include="Base\Response.cs" />
+    <Compile Include="Base\CommonStatusCode.cs" />
+    <Compile Include="Plugin\PluginResponse.cs" />
     <Compile Include="Plugin\PluginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\Request.cs" />

@@ -11,6 +11,8 @@ namespace SakuraBridge.Library
     /// </summary>
     public abstract class Message
     {
+        public const string HeaderPattern = @"^([^:]+?)\s*:\s*(.+?)$";
+
         protected virtual Dictionary<string, string> Headers { get; set; }
 
         /// <summary>
@@ -41,6 +43,14 @@ namespace SakuraBridge.Library
                     Headers[name] = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        public Message()
+        {
+            Headers = new Dictionary<string, string>();
         }
 
         /// <summary>

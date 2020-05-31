@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace SakuraBridge.Export
 {
@@ -57,8 +58,17 @@ namespace SakuraBridge.Export
         [DllExport]
         public static IntPtr request(IntPtr messagePtr, IntPtr lenPtr)
         {
-            var message = Marshal.PtrToStringAnsi(messagePtr);    // IntPtrをstring型に変換
-            var len = Marshal.ReadInt32(lenPtr);  // メッセージ長を読み取る
+            // var message = Marshal.PtrToStringAnsi(messagePtr);    // IntPtrをstring型に変換
+
+            // メッセージ長を読み取る
+            var len = Marshal.ReadInt32(lenPtr);  
+
+            // メッセージの内容をbyte配列に格納
+            var messageBytes = new byte[len];
+            Marshal.Copy(messagePtr, messageBytes, 0, len);
+
+            // メッセージの内容をUTF-8と解釈して文字列に変換
+            var message = Encoding.UTF8.GetString(messageBytes);
 
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(messagePtr);
@@ -66,9 +76,18 @@ namespace SakuraBridge.Export
             // ModuleのRequest処理を呼び出す
             string resStr = Module.Request(message);
 
+            // バイト配列に変換
+            var resBytes = Encoding.UTF8.GetBytes(resStr);
+
+            // 文字列の領域を確保
+            var resPtr = Marshal.AllocHGlobal(resBytes.Length);
+
+            // 文字列をコピー
+            Marshal.Copy(resBytes, 0, resPtr, resBytes.Length);
+
             // responseを返す
-            Marshal.WriteInt32(lenPtr, resStr.Length);
-            return Marshal.StringToHGlobalAnsi(resStr);
+            Marshal.WriteInt32(lenPtr, resBytes.Length);
+            return resPtr;
         }
     }
 }
