@@ -44,9 +44,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Library\Library.csproj">
+    <ProjectReference Include="..\..\Library\Library.csproj">
       <Project>{df8c43cd-024c-4058-8e37-592a5ef752c0}</Project>
       <Name>Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BridgeTestForm\BridgeTestForm.csproj">
+      <Project>{01b0369f-b51f-4421-9cb8-4215225d457d}</Project>
+      <Name>BridgeTestForm</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

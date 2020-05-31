@@ -1,3 +1,0 @@
-type,plugin
-name,SakuraBridge Test
-directory,SakuraBridgePrototype
