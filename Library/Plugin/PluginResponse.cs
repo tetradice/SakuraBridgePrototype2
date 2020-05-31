@@ -25,5 +25,13 @@ namespace SakuraBridge.Library
         {
         }
 
+        /// <summary>
+        /// Scriptヘッダ
+        /// </summary>
+        public virtual string Script
+        {
+            get { return this["Script"]; }
+            set { this["Script"] = value; }
+        }
     }
 }
