@@ -9,53 +9,35 @@ using System.Threading.Tasks;
 
 namespace BridgeTest
 {
-    public class TestModule : IModule
+    public class TestModule : PluginModule
     {
-        protected string DllDirPath;
         protected AppDomain FormAppDomain;
 
-        public virtual void Load(string dllDirPath)
+        /// <summary>
+        /// プラグインのバージョン (versionリクエストに対して返す値)
+        /// </summary>
+        public override string Version
         {
-            Debug.WriteLine("[module load]");
-            DllDirPath = dllDirPath;
+            get { return "TestModule-1.0"; }
         }
 
-        public virtual string Request(string msg)
+        public override PluginResponse OnMenuExec(PluginRequest req)
         {
-            Debug.WriteLine("[module request]");
-            Debug.WriteLine(msg);
+            var res = PluginResponse.OK();
+            res.Script = @"\0OnMenuExecイベントが呼び出されました。\e";
 
-            PluginRequest req;
-            try
+            FormAppDomain = AppDomain.CreateDomain("子画面");
+            Task.Run(() =>
             {
-                req = PluginRequest.Parse(msg);
-            }
-            catch (BadRequestException ex)
-            {
-                Debug.WriteLine(ex.ToString());
-                return (new PluginResponse(CommonStatusCode.BadRequest)).ToString();
-            }
+                FormAppDomain.ExecuteAssembly(Path.Combine(DLLDirPath, "BridgeTestForm.exe"));
+            });
 
-            var res = new PluginResponse(CommonStatusCode.OK);
-
-            if(req.ID == "OnMenuExec")
-            {
-                res.Script = @"\0OnMenuExecイベントが呼び出されました。\e";
-
-                FormAppDomain = AppDomain.CreateDomain("子画面");
-                Task.Run(() =>
-                {
-                    FormAppDomain.ExecuteAssembly(Path.Combine(DllDirPath, "BridgeTestForm.exe"));
-                });
-            }
-            Debug.WriteLine(res.ToString());
-
-            return res.ToString();
+            return res;
         }
 
-        public virtual void Unload()
+        public override void Unload()
         {
-            Debug.WriteLine("[module unload]");
+            base.Unload();
             AppDomain.Unload(FormAppDomain);
         }
     }

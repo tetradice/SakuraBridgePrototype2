@@ -45,6 +45,7 @@
     <Compile Include="Base\Message.cs" />
     <Compile Include="Base\Response.cs" />
     <Compile Include="Base\CommonStatusCode.cs" />
+    <Compile Include="Plugin\PluginModule.cs" />
     <Compile Include="Plugin\PluginResponse.cs" />
     <Compile Include="Plugin\PluginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

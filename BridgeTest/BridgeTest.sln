@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTestPlugin", "BridgeT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTestForm", "BridgeTestForm\BridgeTestForm.csproj", "{01B0369F-B51F-4421-9CB8-4215225D457D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "..\Library\Library.csproj", "{DF8C43CD-024C-4058-8E37-592A5EF752C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Library", "..\Library\SakuraBridge.Library.csproj", "{DF8C43CD-024C-4058-8E37-592A5EF752C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

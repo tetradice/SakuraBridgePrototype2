@@ -27,12 +27,6 @@ namespace SakuraBridge.Library
 
             set
             {
-                // 改行文字を含んでいる場合はエラー
-                if (value.Contains("\r") || value.Contains("\n"))
-                {
-                    throw new ArgumentException(string.Format("{0} ヘッダに設定しようとした値に、改行文字が含まれています。"));
-                }
-
                 if (value == null)
                 {
                     // nullを設定しようとした場合はクリア
@@ -40,6 +34,12 @@ namespace SakuraBridge.Library
                 }
                 else
                 {
+                    // 改行文字を含んでいる場合はエラー
+                    if (value.Contains("\r") || value.Contains("\n"))
+                    {
+                        throw new ArgumentException(string.Format("{0} ヘッダに設定しようとした値に、改行文字が含まれています。"));
+                    }
+
                     Headers[name] = value;
                 }
             }

@@ -33,5 +33,14 @@ namespace SakuraBridge.Library
             get { return this["Script"]; }
             set { this["Script"] = value; }
         }
+
+        #region staticメンバ
+
+        public static PluginResponse OK()
+        {
+            return new PluginResponse(CommonStatusCode.OK);
+        }
+
+        #endregion
     }
 }
