@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DllExportTest1", "Dll\DllExportTest1.csproj", "{90E7F8DE-EA69-4498-906F-0DD20B5F2D12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Others", "Util\Others.csproj", "{EEC97323-7872-40F7-891F-7A20EE673F82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90E7F8DE-EA69-4498-906F-0DD20B5F2D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90E7F8DE-EA69-4498-906F-0DD20B5F2D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90E7F8DE-EA69-4498-906F-0DD20B5F2D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90E7F8DE-EA69-4498-906F-0DD20B5F2D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC97323-7872-40F7-891F-7A20EE673F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC97323-7872-40F7-891F-7A20EE673F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC97323-7872-40F7-891F-7A20EE673F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC97323-7872-40F7-891F-7A20EE673F82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
