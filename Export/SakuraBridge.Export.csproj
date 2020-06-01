@@ -72,6 +72,12 @@
       <Wz>1</Wz>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Library\SakuraBridge.Library.csproj">
+      <Project>{DF8C43CD-024C-4058-8E37-592A5EF752C0}</Project>
+      <Name>SakuraBridge.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport">
     <Import Project="$(SolutionDir)packages\DllExport.1.7.1\tools\net.r_eg.DllExport.targets" Condition="Exists($([MSBuild]::Escape('$(SolutionDir)packages\DllExport.1.7.1\tools\net.r_eg.DllExport.targets')))" Label="8337224c9ad9e356" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SakuraBridge.Library;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,29 @@ namespace SakuraBridge.Export
         /// <summary>
         /// .NETアセンブリから読み込んだSakuraBridgeモジュール
         /// </summary>
-        public static dynamic Module;
+        public static IModule Module;
+
+        /// <summary>
+        /// staticコンストラクタ
+        /// </summary>
+        static Export()
+        {
+            // アセンブリ解決処理を追加
+            // (クラスライブラリとして外部から呼び出されるため、この処理を加えないとアセンブリがどこにあるのかを特定できない)
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+        }
+
+        /// <summary>
+        /// アセンブリ解決処理
+        /// </summary>
+        static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            var assemblyName = args.Name.Split(',')[0];
+            var assemblyPath = Path.Combine(Path.GetDirectoryName(args.RequestingAssembly.Location), string.Format("{0}.dll", assemblyName));
+            return Assembly.LoadFrom(assemblyPath);
+        }
+
+        #region エクスポート関数
 
         [DllExport]
         public static bool load(IntPtr dllDirPathPtr, int len)
@@ -39,14 +62,14 @@ namespace SakuraBridge.Export
             }
 
             // モジュールを読み込む
+            var iModuleName = typeof(IModule).FullName;
             var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, dllName));
             foreach (var type in asm.GetTypes())
             {
                 // SakuraBridge.Library.IModule 型を実装したクラス1つを探す
-                // (DllExportでは通常のプロジェクト参照は動作しない？ ように思われるため、型名を直接指定してdynamic型で処理)
-                if (type.GetInterface("SakuraBridge.Library.IModule") != null)
+                if (type.GetInterface(iModuleName) != null)
                 {
-                    Module = asm.CreateInstance(type.FullName);
+                    Module = (IModule)asm.CreateInstance(type.FullName);
 
                     // ModuleのLoad処理を呼び出す
                     Module.Load(Path.GetDirectoryName(asm.Location));
@@ -68,10 +91,8 @@ namespace SakuraBridge.Export
         }
 
         [DllExport]
-        public static IntPtr request(IntPtr messagePtr, IntPtr lenPtr)
+        public static IntPtr request([MarshalAs(UnmanagedType.HString)]IntPtr messagePtr, IntPtr lenPtr)
         {
-            // var message = Marshal.PtrToStringAnsi(messagePtr);    // IntPtrをstring型に変換
-
             // メッセージ長を読み取る
             var len = Marshal.ReadInt32(lenPtr);  
 
@@ -91,15 +112,19 @@ namespace SakuraBridge.Export
             // バイト配列に変換
             var resBytes = Encoding.UTF8.GetBytes(resStr);
 
-            // 文字列の領域を確保
+            // レスポンス文字列の領域を確保
             var resPtr = Marshal.AllocHGlobal(resBytes.Length);
 
-            // 文字列をコピー
+            // レスポンス文字列をコピー
             Marshal.Copy(resBytes, 0, resPtr, resBytes.Length);
 
             // responseを返す
             Marshal.WriteInt32(lenPtr, resBytes.Length);
             return resPtr;
         }
+
+        #endregion
+
+
     }
 }
