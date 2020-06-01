@@ -91,5 +91,10 @@ namespace SakuraBridge.Library
         {
             return PluginResponse.OK();
         }
+
+        /// <summary>
+        /// リクエスト/レスポンス時に使用するエンコーディング
+        /// </summary>
+        public virtual Encoding Encoding { get { return Encoding.UTF8; } }
     }
 }

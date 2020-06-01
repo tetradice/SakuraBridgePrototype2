@@ -101,7 +101,7 @@ namespace SakuraBridge.Export
             Marshal.Copy(messagePtr, messageBytes, 0, len);
 
             // メッセージの内容をUTF-8と解釈して文字列に変換
-            var message = Encoding.UTF8.GetString(messageBytes);
+            var message = Module.Encoding.GetString(messageBytes);
 
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(messagePtr);
@@ -110,7 +110,7 @@ namespace SakuraBridge.Export
             string resStr = Module.Request(message);
 
             // バイト配列に変換
-            var resBytes = Encoding.UTF8.GetBytes(resStr);
+            var resBytes = Module.Encoding.GetBytes(resStr);
 
             // レスポンス文字列の領域を確保
             var resPtr = Marshal.AllocHGlobal(resBytes.Length);
