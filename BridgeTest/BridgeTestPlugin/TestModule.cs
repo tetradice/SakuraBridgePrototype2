@@ -38,7 +38,10 @@ namespace BridgeTest
         public override void Unload()
         {
             base.Unload();
-            AppDomain.Unload(FormAppDomain);
+            if (FormAppDomain != null)
+            {
+                AppDomain.Unload(FormAppDomain);
+            }
         }
     }
 }

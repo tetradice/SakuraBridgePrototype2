@@ -5,7 +5,7 @@ charset,Shift_JIS
 name,SakuraBridgeTest
 
 //PLUGIN DLL
-filename,x86\SakuraBridge.Export.dll
+filename,SakuraBridge.Export.dll
 
 //オプション指定-OnSecondChangeの通知頻度
 //0で無効、標準1
@@ -15,3 +15,5 @@ secondchangeinterval,0
 //http://www.famkruithof.net/uuid/uuidgen とかで生成できます
 //一度書いたら変えないこと
 id,a7f4f18e-b880-4922-a294-d257dd472f3a
+
+homeurl,http://sakura.morphball.net/explorer2/update/sakurabridgetest20200601/

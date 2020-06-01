@@ -27,7 +27,7 @@ namespace SakuraBridge.Export
             Marshal.FreeHGlobal(dllDirPathPtr);
 
             // モジュールを読み込む
-            var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, @"..\BridgeTest.dll"));
+            var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, @"BridgeTest.dll"));
             foreach (var type in asm.GetTypes())
             {
                 // SakuraBridge.Library.IModule 型を実装したクラス1つを探す
