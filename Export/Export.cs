@@ -26,8 +26,20 @@ namespace SakuraBridge.Export
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(dllDirPathPtr);
 
+            // SakuraBridge.txtを読み込む
+            var lines = File.ReadAllLines(Path.Combine(dllDirPath, @"SakuraBridge.txt"));
+            var dllName = "module.dll";
+            foreach(var line in lines)
+            {
+                if (line.StartsWith("maindll,"))
+                {
+                    dllName = line.Split(',')[1];
+                    break;
+                }
+            }
+
             // モジュールを読み込む
-            var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, @"BridgeTest.dll"));
+            var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, dllName));
             foreach (var type in asm.GetTypes())
             {
                 // SakuraBridge.Library.IModule 型を実装したクラス1つを探す

@@ -26,6 +26,15 @@ namespace SakuraBridge.Library
         }
 
         /// <summary>
+        /// Eventヘッダ
+        /// </summary>
+        public virtual string Event
+        {
+            get { return this["Event"]; }
+            set { this["Event"] = value; }
+        }
+
+        /// <summary>
         /// Scriptヘッダ
         /// </summary>
         public virtual string Script
