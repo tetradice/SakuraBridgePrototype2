@@ -10,7 +10,7 @@ namespace SakuraBridge.Library
     /// <summary>
     /// プラグインモジュール (主に継承して使用する)
     /// </summary>
-    public abstract class PluginModule : IModule
+    public abstract class PluginModule : MarshalByRefObject, IModule
     {
         /// <summary>
         /// DLLが置かれているディレクトリのパス。Load時にセットされる

@@ -20,6 +20,11 @@ namespace SakuraBridge.Export
         public static IModule Module;
 
         /// <summary>
+        /// モジュールを実行するアプリケーションドメイン
+        /// </summary>
+        public static AppDomain ModuleDomain;
+
+        /// <summary>
         /// staticコンストラクタ
         /// </summary>
         static Export()
@@ -52,31 +57,33 @@ namespace SakuraBridge.Export
             // SakuraBridge.txtを読み込む
             var lines = File.ReadAllLines(Path.Combine(dllDirPath, @"SakuraBridge.txt"));
             var dllName = "module.dll";
-            foreach(var line in lines)
+            string moduleClassName = null;
+            foreach (var line in lines)
             {
                 if (line.StartsWith("maindll,"))
                 {
                     dllName = line.Split(',')[1];
-                    break;
                 }
-            }
 
-            // モジュールを読み込む
-            var iModuleName = typeof(IModule).FullName;
-            var asm = Assembly.LoadFrom(Path.Combine(dllDirPath, dllName));
-            foreach (var type in asm.GetTypes())
-            {
-                // SakuraBridge.Library.IModule 型を実装したクラス1つを探す
-                if (type.GetInterface(iModuleName) != null)
+                if (line.StartsWith("module,"))
                 {
-                    Module = (IModule)asm.CreateInstance(type.FullName);
-
-                    // ModuleのLoad処理を呼び出す
-                    Module.Load(Path.GetDirectoryName(asm.Location));
-
-                    break;
+                    moduleClassName = line.Split(',')[1];
                 }
             }
+
+            if (moduleClassName == null)
+            {
+                throw new Exception("SakuraBridge.txt 内でmoduleが指定されていません。");
+            }
+
+            // 新しいアプリケーションドメインでモジュールを読み込む
+            var iModuleName = typeof(IModule).FullName;
+
+            ModuleDomain = AppDomain.CreateDomain("ModuleDomain");
+            Module = (IModule)ModuleDomain.CreateInstanceFromAndUnwrap(Path.Combine(dllDirPath, dllName), moduleClassName);
+
+            // ModuleのLoad処理を呼び出す
+            Module.Load(dllDirPath);
 
             return true; // 正常終了
         }
@@ -86,6 +93,9 @@ namespace SakuraBridge.Export
         {
             // ModuleのUnload処理を呼び出す
             Module.Unload();
+
+            // モジュールのアプリケーションドメインを開放
+            AppDomain.Unload(ModuleDomain);
 
             return true; // 正常終了
         }
