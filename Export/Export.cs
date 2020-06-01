@@ -91,7 +91,7 @@ namespace SakuraBridge.Export
         }
 
         [DllExport]
-        public static IntPtr request([MarshalAs(UnmanagedType.HString)]IntPtr messagePtr, IntPtr lenPtr)
+        public static IntPtr request(IntPtr messagePtr, IntPtr lenPtr)
         {
             // メッセージ長を読み取る
             var len = Marshal.ReadInt32(lenPtr);  

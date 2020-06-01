@@ -73,9 +73,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Library\SakuraBridge.Library.csproj">
-      <Project>{DF8C43CD-024C-4058-8E37-592A5EF752C0}</Project>
-      <Name>SakuraBridge.Library</Name>
+    <ProjectReference Include="..\Interfaces\SakuraBridge.Interfaces.csproj">
+      <Project>{f7af7981-d769-42e1-8fec-7d5d50cf9b5b}</Project>
+      <Name>SakuraBridge.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

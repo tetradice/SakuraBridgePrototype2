@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTestForm", "BridgeTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Library", "..\Library\SakuraBridge.Library.csproj", "{DF8C43CD-024C-4058-8E37-592A5EF752C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Interfaces", "..\Interfaces\SakuraBridge.Interfaces.csproj", "{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DF8C43CD-024C-4058-8E37-592A5EF752C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF8C43CD-024C-4058-8E37-592A5EF752C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF8C43CD-024C-4058-8E37-592A5EF752C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
