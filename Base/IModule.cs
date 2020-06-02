@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SakuraBridge.Library
+namespace SakuraBridge.Base
 {
     /// <summary>
     /// 実際にリクエストを処理するモジュールクラスのインターフェース

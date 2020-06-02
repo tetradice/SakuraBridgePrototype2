@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Export.cs" />
-    <Compile Include="ModuleClassFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -74,9 +73,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\SakuraBridge.Interfaces.csproj">
+    <ProjectReference Include="..\Base\SakuraBridge.Base.csproj">
       <Project>{f7af7981-d769-42e1-8fec-7d5d50cf9b5b}</Project>
-      <Name>SakuraBridge.Interfaces</Name>
+      <Name>SakuraBridge.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

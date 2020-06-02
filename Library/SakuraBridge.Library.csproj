@@ -55,9 +55,9 @@
     <Folder Include="SSTP\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Interfaces\SakuraBridge.Interfaces.csproj">
-      <Project>{f7af7981-d769-42e1-8fec-7d5d50cf9b5b}</Project>
-      <Name>SakuraBridge.Interfaces</Name>
+    <ProjectReference Include="..\Base\SakuraBridge.Base.csproj">
+      <Project>{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}</Project>
+      <Name>SakuraBridge.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

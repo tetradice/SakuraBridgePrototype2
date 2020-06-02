@@ -1,4 +1,4 @@
-﻿using SakuraBridge.Library;
+﻿using SakuraBridge.Base;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -74,7 +74,8 @@ namespace SakuraBridge.Export
 
             // アプリケーションドメイン内でアセンブリを読み込み、IModuleを継承したモジュールクラスを探す
             var dllPath = Path.Combine(dllDirPath, dllName);
-            var finder = (IModuleClassFinder)ModuleDomain.CreateInstanceFromAndUnwrap(Assembly.GetExecutingAssembly().Location, typeof(ModuleClassFinder).FullName);
+            var baseLibPath = Path.Combine(dllDirPath, "SakuraBridge.Base.dll");
+            var finder = (IModuleClassFinder)ModuleDomain.CreateInstanceFromAndUnwrap(baseLibPath, typeof(ModuleClassFinder).FullName);
             var moduleClassNames = finder.GetModuleClassFullNames(dllPath);
 
             // モジュールクラスが1つもない、もしくは2つ以上ある場合はエラー
@@ -89,9 +90,6 @@ namespace SakuraBridge.Export
 
             // モジュールクラスのインスタンスを作成
             Module = (IModule)ModuleDomain.CreateInstanceFromAndUnwrap(dllPath, moduleClassNames.Single());
-
-            var assmblies = AppDomain.CurrentDomain.GetAssemblies();
-            var modassmblies = ModuleDomain.GetAssemblies();
 
             // ModuleのLoad処理を呼び出す
             Module.Load(dllDirPath);

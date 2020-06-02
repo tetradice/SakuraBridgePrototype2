@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Export", "SakuraBridge.Export.csproj", "{1E84BF09-BC20-4BDD-843E-297C8CF9E4AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Interfaces", "..\Interfaces\SakuraBridge.Interfaces.csproj", "{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Base", "..\Base\SakuraBridge.Base.csproj", "{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

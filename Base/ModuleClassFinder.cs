@@ -1,18 +1,20 @@
-﻿using SakuraBridge.Library;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SakuraBridge.Export
+namespace SakuraBridge.Base
 {
     /// <summary>
     /// module dll (アセンブリ) 内からモジュールクラスを探し出すクラスのインターフェース
     /// </summary>
     public interface IModuleClassFinder
     {
+        /// <summary>
+        /// module dll (アセンブリ) 内から全モジュールクラスの名前を取得
+        /// </summary>
         string[] GetModuleClassFullNames(string moduleAssemblyPath);
     }
 

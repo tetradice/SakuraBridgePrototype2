@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeTestForm", "BridgeTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Library", "..\Library\SakuraBridge.Library.csproj", "{DF8C43CD-024C-4058-8E37-592A5EF752C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Interfaces", "..\Interfaces\SakuraBridge.Interfaces.csproj", "{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Base", "..\Base\SakuraBridge.Base.csproj", "{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

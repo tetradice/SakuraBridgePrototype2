@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Interfaces", "..\Interfaces\SakuraBridge.Interfaces.csproj", "{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Interfaces", "..\Base\SakuraBridge.Interfaces.csproj", "{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Library", "SakuraBridge.Library.csproj", "{D627897E-80CB-47F0-AC50-B4E89D870042}"
 EndProject
