@@ -18,6 +18,15 @@ namespace SakuraBridge.Library
         public abstract string Command { get; }
 
         /// <summary>
+        /// Senderヘッダ
+        /// </summary>
+        public virtual string Sender
+        {
+            get { return this["Sender"]; }
+            set { this["Sender"] = value; }
+        }
+
+        /// <summary>
         /// 文字列化
         /// </summary>
         public override string ToString()
@@ -96,6 +105,5 @@ namespace SakuraBridge.Library
         }
 
         #endregion
-
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SakuraBridge.Library
 {
     /// <summary>
-    /// SHIORI/SAORI/PLUGINのリクエストやレスポンスを表すクラス
+    /// SHIORI/SAORI/PLUGIN/SSTPのリクエストやレスポンスを表すクラス
     /// </summary>
     public abstract class Message
     {

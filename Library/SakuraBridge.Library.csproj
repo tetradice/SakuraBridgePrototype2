@@ -52,10 +52,12 @@
     <Compile Include="Plugin\PluginRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base\Request.cs" />
+    <Compile Include="SSTP\SSTPRequest.cs" />
+    <Compile Include="SSTP\SSTPResponse.cs" />
+    <Compile Include="SSTP\SSTPClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Saori\" />
-    <Folder Include="SSTP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
