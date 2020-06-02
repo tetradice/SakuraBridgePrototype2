@@ -55,32 +55,43 @@ namespace SakuraBridge.Export
             Marshal.FreeHGlobal(dllDirPathPtr);
 
             // SakuraBridge.txtを読み込む
-            var lines = File.ReadAllLines(Path.Combine(dllDirPath, @"SakuraBridge.txt"));
-            var dllName = "module.dll";
-            string moduleClassName = null;
+            var lines = File.ReadAllLines(Path.Combine(dllDirPath, @"bridge.txt"));
+            string dllName = null;
             foreach (var line in lines)
             {
-                if (line.StartsWith("maindll,"))
+                if (line.StartsWith("module,"))
                 {
                     dllName = line.Split(',')[1];
                 }
-
-                if (line.StartsWith("module,"))
-                {
-                    moduleClassName = line.Split(',')[1];
-                }
             }
-
-            if (moduleClassName == null)
+            if (dllName == null)
             {
-                throw new Exception("SakuraBridge.txt 内でmoduleが指定されていません。");
+                throw new Exception("bridge.txt 内でmodule dll名が指定されていません。");
             }
 
-            // 新しいアプリケーションドメインでモジュールを読み込む
-            var iModuleName = typeof(IModule).FullName;
-
+            // モジュールを読み込むための新しいアプリケーションドメインを生成
             ModuleDomain = AppDomain.CreateDomain("ModuleDomain");
-            Module = (IModule)ModuleDomain.CreateInstanceFromAndUnwrap(Path.Combine(dllDirPath, dllName), moduleClassName);
+
+            // アプリケーションドメイン内でアセンブリを読み込み、IModuleを継承したモジュールクラスを探す
+            var dllPath = Path.Combine(dllDirPath, dllName);
+            var finder = (IModuleClassFinder)ModuleDomain.CreateInstanceFromAndUnwrap(Assembly.GetExecutingAssembly().Location, typeof(ModuleClassFinder).FullName);
+            var moduleClassNames = finder.GetModuleClassFullNames(dllPath);
+
+            // モジュールクラスが1つもない、もしくは2つ以上ある場合はエラー
+            if (moduleClassNames.Length == 0)
+            {
+                throw new Exception(string.Format("アセンブリ内にIModuleを継承したクラスが含まれていません。 - {0}", dllName));
+            }
+            if (moduleClassNames.Length >= 2)
+            {
+                throw new Exception(string.Format("アセンブリ内にIModuleを継承したクラスが2つ以上含まれています。 - {0}", dllName));
+            }
+
+            // モジュールクラスのインスタンスを作成
+            Module = (IModule)ModuleDomain.CreateInstanceFromAndUnwrap(dllPath, moduleClassNames.Single());
+
+            var assmblies = AppDomain.CurrentDomain.GetAssemblies();
+            var modassmblies = ModuleDomain.GetAssemblies();
 
             // ModuleのLoad処理を呼び出す
             Module.Load(dllDirPath);

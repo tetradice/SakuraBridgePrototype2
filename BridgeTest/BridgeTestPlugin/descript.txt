@@ -5,7 +5,7 @@ charset,Shift_JIS
 name,SakuraBridgeTest
 
 //PLUGIN DLL
-filename,SakuraBridge.Export.dll
+filename,bridge.dll
 
 //オプション指定-OnSecondChangeの通知頻度
 //0で無効、標準1
