@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SakuraBridge.Base">
+      <HintPath>..\Base\bin\Debug\SakuraBridge.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -53,12 +56,6 @@
   <ItemGroup>
     <Folder Include="Saori\" />
     <Folder Include="SSTP\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Base\SakuraBridge.Base.csproj">
-      <Project>{F7AF7981-D769-42E1-8FEC-7D5D50CF9B5B}</Project>
-      <Name>SakuraBridge.Base</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
