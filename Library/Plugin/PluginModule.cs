@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace SakuraBridge.Library
         /// </summary>
         public virtual string Request(string msg)
         {
-            Debug.WriteLine("[pluigin module request]");
+            Debug.WriteLine("[plugin module request]");
             Debug.WriteLine(msg);
 
             // リクエストのパース
@@ -80,10 +81,18 @@ namespace SakuraBridge.Library
         /// </summary>
         public virtual void Unload()
         {
-            Debug.WriteLine("[pluigin module unload]");
+            Debug.WriteLine("[plugin module unload]");
         }
 
-        public abstract string Version { get; }
+        /// <summary>
+        /// バージョン文字列 (オーバーライドしない場合はアセンブリ名とアセンブリのバージョンから自動生成される)
+        /// </summary>
+        public virtual string Version {
+            get {
+                var asm = Assembly.GetAssembly(this.GetType());
+                return string.Format("{0}-{1}", asm.GetName().Name, asm.GetName().Version);
+            }
+        }
 
         /// <summary>
         /// メニューからのプラグイン選択時に呼び出される処理

@@ -40,7 +40,7 @@ namespace SakuraBridge.Export
         static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             var assemblyName = args.Name.Split(',')[0];
-            var assemblyPath = Path.Combine(Path.GetDirectoryName(args.RequestingAssembly.Location), string.Format("{0}.dll", assemblyName));
+            var assemblyPath = Path.Combine(Path.GetDirectoryName(args.RequestingAssembly.Location), "module", string.Format("{0}.dll", assemblyName));
             return Assembly.LoadFrom(assemblyPath);
         }
 
@@ -73,8 +73,8 @@ namespace SakuraBridge.Export
             ModuleDomain = AppDomain.CreateDomain("ModuleDomain");
 
             // アプリケーションドメイン内でアセンブリを読み込み、IModuleを継承したモジュールクラスを探す
-            var dllPath = Path.Combine(dllDirPath, dllName);
-            var baseLibPath = Path.Combine(dllDirPath, "SakuraBridge.Base.dll");
+            var dllPath = Path.Combine(dllDirPath, "module", dllName);
+            var baseLibPath = Path.Combine(dllDirPath, @"module\SakuraBridge.Base.dll");
             var finder = (IModuleClassFinder)ModuleDomain.CreateInstanceFromAndUnwrap(baseLibPath, typeof(ModuleClassFinder).FullName);
             var moduleClassNames = finder.GetModuleClassFullNames(dllPath);
 

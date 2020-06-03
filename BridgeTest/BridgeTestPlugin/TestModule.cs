@@ -13,14 +13,6 @@ namespace BridgeTest
     {
         protected AppDomain FormAppDomain;
 
-        /// <summary>
-        /// プラグインのバージョン (versionリクエストに対して返す値)
-        /// </summary>
-        public override string Version
-        {
-            get { return "TestModule-1.0"; }
-        }
-
         public override PluginResponse OnMenuExec(PluginRequest req)
         {
             var res = PluginResponse.OK();

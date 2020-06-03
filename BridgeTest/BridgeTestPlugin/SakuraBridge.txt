@@ -1,2 +1,0 @@
-maindll,BridgeTest.dll
-module,BridgeTest.TestModule
