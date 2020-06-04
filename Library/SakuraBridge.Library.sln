@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Library", "SakuraBridge.Library.csproj", "{D627897E-80CB-47F0-AC50-B4E89D870042}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SakuraBridge.Library", "SakuraBridge.Library.csproj", "{DF8C43CD-024C-4058-8E37-592A5EF752C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D627897E-80CB-47F0-AC50-B4E89D870042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D627897E-80CB-47F0-AC50-B4E89D870042}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D627897E-80CB-47F0-AC50-B4E89D870042}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D627897E-80CB-47F0-AC50-B4E89D870042}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF8C43CD-024C-4058-8E37-592A5EF752C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF8C43CD-024C-4058-8E37-592A5EF752C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF8C43CD-024C-4058-8E37-592A5EF752C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF8C43CD-024C-4058-8E37-592A5EF752C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51A6F897-A90A-476E-B764-8B995A2CE7D4}
 	EndGlobalSection
 EndGlobal

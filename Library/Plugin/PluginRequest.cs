@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SakuraBridge.Library
 {
+    /// <summary>
+    /// PLUGIN/2.0 リクエスト
+    /// </summary>
     public class PluginRequest : Request
     {
         #region 定数

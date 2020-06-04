@@ -126,7 +126,6 @@ namespace SakuraBridge.Library
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        /// <param name="statusCode">ステータスコード。ここで指定した値に応じて、ステータス説明文も自動設定される</param>
         public SSTPResponse()
         {
             AdditionalData = null;

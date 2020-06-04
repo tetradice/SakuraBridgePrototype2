@@ -15,6 +15,17 @@ namespace SakuraBridge.Library
     }
 
     /// <summary>
+    /// NOTIFY SSTP/1.1 リクエスト
+    /// </summary>
+    public class NotifySSTP11Request : Request
+    {
+        /// <summary>
+        /// コマンド文字列
+        /// </summary>
+        public override string Command { get { return "NOTIFY SSTP/1.1"; } }
+    }
+
+    /// <summary>
     /// SEND SSTP/1.4 リクエスト
     /// </summary>
     public class SendSSTP14Request : Request

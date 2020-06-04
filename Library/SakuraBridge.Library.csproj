@@ -16,19 +16,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\ukagaka_explorer2\src\plugin_src\lib_debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SakuraBridge.Library.XML</DocumentationFile>
+    <DocumentationFile>..\..\ukagaka_explorer2\src\plugin_src\lib_debug\SakuraBridge.Library.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\ukagaka_explorer2\src\plugin_src\lib\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\ukagaka_explorer2\src\plugin_src\lib\SakuraBridge.Library.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SakuraBridge.Base">
