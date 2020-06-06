@@ -74,9 +74,7 @@ namespace SakuraBridge.Library
             Encoding = Encoding.UTF8;
         }
 
-        /// <summary>
-        /// 文字列化
-        /// </summary>
+        /// <inheritdoc />
         public override string ToString()
         {
             var lines = new List<string>();
