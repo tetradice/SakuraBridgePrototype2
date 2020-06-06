@@ -12,25 +12,25 @@ namespace SakuraBridge.Base
     public interface IModule
     {
         /// <summary>
-        /// DLLのロード時に呼び出される処理
+        /// DLLのロード時に呼び出される処理です。
         /// </summary>
-        /// <param name="dllDirPath">アセンブリDLLが存在するパス</param>
+        /// <param name="dllDirPath">bridge.dll が存在するフォルダのパス</param>
         void Load(string dllDirPath);
 
         /// <summary>
-        /// DLLのアンロード時に呼び出される処理
+        /// DLLのアンロード時に呼び出される処理です。
         /// </summary>
         void Unload();
 
         /// <summary>
-        /// リクエスト受信
+        /// リクエスト受信時に呼び出される処理です。
         /// </summary>
         /// <param name="msg">リクエスト文字列</param>
         /// <returns>レスポンス文字列</returns>
         string Request(string msg);
 
         /// <summary>
-        /// リクエスト/レスポンス時に使用するエンコーディング
+        /// リクエスト/レスポンス時に使用するエンコーディングです。
         /// </summary>
         Encoding Encoding { get; }
     }

@@ -23,7 +23,7 @@
     <DocumentationFile>..\..\ukagaka_explorer2\src\plugin_src\lib_debug\SakuraBridge.Library.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\ukagaka_explorer2\src\plugin_src\lib\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -32,9 +32,6 @@
     <DocumentationFile>..\..\ukagaka_explorer2\src\plugin_src\lib\SakuraBridge.Library.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SakuraBridge.Base">
-      <HintPath>..\Base\bin\Debug\SakuraBridge.Base.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Base\Exceptions.cs" />
     <Compile Include="Base\Message.cs" />
+    <Compile Include="Base\Module.cs" />
     <Compile Include="Base\Response.cs" />
     <Compile Include="Base\CommonStatusCode.cs" />
     <Compile Include="Plugin\PluginModule.cs" />
@@ -60,6 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Saori\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\SakuraBridge.Base.csproj">
+      <Project>{f7af7981-d769-42e1-8fec-7d5d50cf9b5b}</Project>
+      <Name>SakuraBridge.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
