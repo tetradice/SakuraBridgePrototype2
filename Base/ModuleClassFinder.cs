@@ -23,6 +23,9 @@ namespace SakuraBridge.Base
     /// </summary>
     public class ModuleClassFinder : MarshalByRefObject, IModuleClassFinder
     {
+        /// <summary>
+        /// module dll (アセンブリ) 内からモジュールクラスを探し出し、配列として返す
+        /// </summary>
         public virtual string[] GetModuleClassFullNames(string moduleAssemblyPath)
         {
             var asm = Assembly.LoadFrom(moduleAssemblyPath);

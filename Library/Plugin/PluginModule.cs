@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,7 +13,7 @@ namespace SakuraBridge.Library
     /// <summary>
     /// プラグインモジュール (主に継承して使用する)
     /// </summary>
-    public abstract class PluginModule : MarshalByRefObject, IModule
+    public abstract class PluginModule : ModuleBase
     {
         /// <summary>
         /// DLLが置かれているディレクトリのパス。Load時にセットされる
@@ -23,7 +24,7 @@ namespace SakuraBridge.Library
         /// Load処理
         /// </summary>
         /// <param name="dllDirPath">DLLが置かれているパス</param>
-        public virtual void Load(string dllDirPath)
+        public override void Load(string dllDirPath)
         {
             Debug.WriteLine("[plugin module load]");
             Debug.WriteLine(string.Format("dllDirPath = {0}", dllDirPath));
@@ -33,7 +34,7 @@ namespace SakuraBridge.Library
         /// <summary>
         /// リクエスト
         /// </summary>
-        public virtual string Request(string msg)
+        public override string Request(string msg)
         {
             Debug.WriteLine("[plugin module request]");
             Debug.WriteLine(msg);
@@ -58,6 +59,9 @@ namespace SakuraBridge.Library
             return res.ToString();
         }
 
+        /// <summary>
+        /// リクエストIDに対応するResponseを作成する
+        /// </summary>
         public virtual PluginResponse MakeResponse(PluginRequest req)
         {
             if (req.ID == "version")
@@ -79,7 +83,7 @@ namespace SakuraBridge.Library
         /// <summary>
         /// Unload処理
         /// </summary>
-        public virtual void Unload()
+        public override void Unload()
         {
             Debug.WriteLine("[plugin module unload]");
         }
@@ -105,6 +109,6 @@ namespace SakuraBridge.Library
         /// <summary>
         /// リクエスト/レスポンス時に使用するエンコーディング
         /// </summary>
-        public virtual Encoding Encoding { get { return Encoding.UTF8; } }
+        public override Encoding Encoding { get { return Encoding.UTF8; } }
     }
 }
