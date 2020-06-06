@@ -185,7 +185,7 @@ namespace SakuraBridge.Library
             if (encoding == null) throw new ArgumentNullException("encoding");
 
             if (encoding == Encoding.UTF8) return "UTF-8";
-            if (encoding == Encoding.GetEncoding("Shift_JIS")) return "EUC-JP";
+            if (encoding == Encoding.GetEncoding("Shift_JIS")) return "Shift_JIS";
             if (encoding == Encoding.GetEncoding("EUC-JP")) return "EUC-JP";
             if (encoding == Encoding.GetEncoding("ISO-2022-JP")) return "ISO-2022-JP";
             return encoding.WebName;
