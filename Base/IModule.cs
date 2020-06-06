@@ -28,10 +28,5 @@ namespace SakuraBridge.Base
         /// <param name="msg">リクエスト文字列</param>
         /// <returns>レスポンス文字列</returns>
         string Request(string msg);
-
-        /// <summary>
-        /// リクエスト/レスポンス時に使用するエンコーディングです。
-        /// </summary>
-        Encoding Encoding { get; }
     }
 }

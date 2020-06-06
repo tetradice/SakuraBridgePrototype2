@@ -23,9 +23,6 @@ namespace SakuraBridge.Library
         }
 
         /// <inheritdoc />
-        public abstract Encoding Encoding { get; }
-
-        /// <inheritdoc />
         public abstract void Load(string dllDirPath);
 
         /// <inheritdoc />

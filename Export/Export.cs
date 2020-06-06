@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SakuraBridge.Export
 {
@@ -25,6 +26,11 @@ namespace SakuraBridge.Export
         public static AppDomain ModuleDomain;
 
         /// <summary>
+        /// Charsetヘッダのマッチ用正規表現
+        /// </summary>
+        public static Regex CharsetHeaderPattern;
+
+        /// <summary>
         /// staticコンストラクタ
         /// </summary>
         static Export()
@@ -32,6 +38,9 @@ namespace SakuraBridge.Export
             // アセンブリ解決処理を追加
             // (クラスライブラリとして外部から呼び出されるため、この処理を加えないとアセンブリがどこにあるのかを特定できない)
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
+            // 正規表現の初期化
+            CharsetHeaderPattern = new Regex(@"^Charset\s*:\s*(.+?)$", RegexOptions.Multiline | RegexOptions.Compiled);
         }
 
         /// <summary>
@@ -119,17 +128,26 @@ namespace SakuraBridge.Export
             var messageBytes = new byte[len];
             Marshal.Copy(messagePtr, messageBytes, 0, len);
 
-            // メッセージの内容をUTF-8と解釈して文字列に変換
-            var message = Module.Encoding.GetString(messageBytes);
-
             // 受け取った文字列のハンドルを解放
             Marshal.FreeHGlobal(messagePtr);
 
-            // ModuleのRequest処理を呼び出す
-            string resStr = Module.Request(message);
+            // リクエストメッセージの内容をUTF-8と解釈して文字列に変換
+            var reqStr = Encoding.UTF8.GetString(messageBytes);
 
-            // バイト配列に変換
-            var resBytes = Module.Encoding.GetBytes(resStr);
+            // リクエストメッセージの中にCharset指定があり、かつUTF8でない場合、そのCharset指定を使って読み込み直す
+            var reqEnc = GetEncodingFromMessage(reqStr);
+            if (reqEnc != Encoding.UTF8)
+            {
+                reqStr = reqEnc.GetString(messageBytes);
+            }
+
+            // ModuleのRequest処理を呼び出す
+            string resStr = Module.Request(reqStr);
+
+            // レスポンス文字列をバイト配列に変換
+            // (レスポンスの中にCharset指定があれば、そのエンコーディングを使う)
+            var resEnc = GetEncodingFromMessage(resStr);
+            var resBytes = resEnc.GetBytes(resStr);
 
             // レスポンス文字列の領域を確保
             var resPtr = Marshal.AllocHGlobal(resBytes.Length);
@@ -144,6 +162,36 @@ namespace SakuraBridge.Export
 
         #endregion
 
+        #region その他の関数
+
+        /// <summary>
+        /// メッセージ文字列の中からCharsetを探し、そのCharsetヘッダの値を元にエンコーディングを取得。未指定の場合や解釈できないCharset値の場合はUTF-8を返す
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public static Encoding GetEncodingFromMessage(string message)
+        {
+            // Charsetヘッダの値を探す
+            var matched = CharsetHeaderPattern.Match(message);
+            if (matched.Success)
+            {
+                var charsetValue = matched.Groups[1].Value.TrimEnd();
+                try
+                {
+                    // 解釈可能なCharsetヘッダの値が見つかった場合、対応するエンコーディングを返す
+                    return Encoding.GetEncoding(charsetValue);
+                }
+                catch (ArgumentException)
+                {
+                    // システムでそのCharsetが使用不可能な場合はスキップ
+                }
+            }
+
+            // 未指定の場合や解釈できないCharset値の場合
+            return Encoding.UTF8;
+        }
+
+        #endregion
 
     }
 }
