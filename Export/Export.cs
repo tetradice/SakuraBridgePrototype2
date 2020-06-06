@@ -1,5 +1,4 @@
-﻿using SakuraBridge.Base;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using SakuraBridge.Base;
 
 namespace SakuraBridge.Export
 {
@@ -46,7 +46,7 @@ namespace SakuraBridge.Export
         /// <summary>
         /// アセンブリ解決処理
         /// </summary>
-        static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             var assemblyName = args.Name.Split(',')[0];
             var assemblyPath = Path.Combine(Path.GetDirectoryName(args.RequestingAssembly.Location), "module", string.Format("{0}.dll", assemblyName));
@@ -122,7 +122,7 @@ namespace SakuraBridge.Export
         public static IntPtr request(IntPtr messagePtr, IntPtr lenPtr)
         {
             // メッセージ長を読み取る
-            var len = Marshal.ReadInt32(lenPtr);  
+            var len = Marshal.ReadInt32(lenPtr);
 
             // メッセージの内容をbyte配列に格納
             var messageBytes = new byte[len];
@@ -142,7 +142,7 @@ namespace SakuraBridge.Export
             }
 
             // ModuleのRequest処理を呼び出す
-            string resStr = Module.Request(reqStr);
+            var resStr = Module.Request(reqStr);
 
             // レスポンス文字列をバイト配列に変換
             // (レスポンスの中にCharset指定があれば、そのエンコーディングを使う)

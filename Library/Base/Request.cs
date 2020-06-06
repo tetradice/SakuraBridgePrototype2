@@ -33,7 +33,7 @@ namespace SakuraBridge.Library
         {
             var lines = new List<string>();
             lines.Add(Command);
-            foreach(var name in HeaderNames)
+            foreach (var name in HeaderNames)
             {
                 lines.Add(string.Format("{0}: {1}", name, this[name]));
             }
@@ -70,7 +70,7 @@ namespace SakuraBridge.Library
             {
                 var req = new TReq();
 
-                 // 2行目以降の行をパース
+                // 2行目以降の行をパース
                 for (var i = 1; i < lines.Length; i++)
                 {
                     var line = lines[i];

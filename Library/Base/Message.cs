@@ -144,11 +144,11 @@ namespace SakuraBridge.Library
         {
             get
             {
-                return (this.Charset != null ? FindEncodingByCharset(this.Charset) : null);
+                return (Charset != null ? FindEncodingByCharset(Charset) : null);
             }
             set
             {
-                this.Charset = (value != null ? ConvertEncoding2Charset(value) : null);
+                Charset = (value != null ? ConvertEncoding2Charset(value) : null);
             }
         }
 

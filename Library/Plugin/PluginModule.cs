@@ -1,5 +1,4 @@
-﻿using SakuraBridge.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Reflection;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
+using SakuraBridge.Base;
 
 namespace SakuraBridge.Library
 {
@@ -67,7 +67,7 @@ namespace SakuraBridge.Library
             if (req.ID == "version")
             {
                 var res = PluginResponse.OK();
-                res["Value"] = this.Version;
+                res["Value"] = Version;
                 return res;
             }
             else if (req.ID == "OnMenuExec")
@@ -91,9 +91,11 @@ namespace SakuraBridge.Library
         /// <summary>
         /// バージョン文字列 (オーバーライドしない場合はアセンブリ名とアセンブリのバージョンから自動生成される)
         /// </summary>
-        public virtual string Version {
-            get {
-                var asm = Assembly.GetAssembly(this.GetType());
+        public virtual string Version
+        {
+            get
+            {
+                var asm = Assembly.GetAssembly(GetType());
                 return string.Format("{0}-{1}", asm.GetName().Name, asm.GetName().Version);
             }
         }

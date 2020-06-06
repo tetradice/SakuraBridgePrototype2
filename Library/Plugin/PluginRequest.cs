@@ -55,7 +55,8 @@ namespace SakuraBridge.Library
         /// <summary>
         /// IDヘッダ
         /// </summary>
-        public virtual string ID {
+        public virtual string ID
+        {
             get { return this["ID"]; }
             set { this["ID"] = value; }
         }

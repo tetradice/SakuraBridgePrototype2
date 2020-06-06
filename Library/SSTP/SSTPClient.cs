@@ -36,9 +36,9 @@ namespace SakuraBridge.Library
         /// </summary>
         public SSTPClient()
         {
-            this.ToHost = "127.0.0.1";
-            this.ToPort = DefaultToPort;
-            this.DebugLogging = false;
+            ToHost = "127.0.0.1";
+            ToPort = DefaultToPort;
+            DebugLogging = false;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace SakuraBridge.Library
         public virtual SSTPResponse SendRequest(SSTPRequest req)
         {
             // Charset未指定のリクエストには対応しない
-            if(req.Encoding == null)
+            if (req.Encoding == null)
             {
                 new ArgumentException(string.Format("{0} でSSTPリクエストを送信する場合は、リクエストに有効なCharsetを指定する必要があります。", MethodBase.GetCurrentMethod().Name));
             }

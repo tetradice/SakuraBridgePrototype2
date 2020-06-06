@@ -28,9 +28,9 @@ namespace SakuraBridge.Base
         /// </summary>
         public virtual string[] GetModuleClassFullNames(string moduleAssemblyPath)
         {
-            var asm = Assembly.LoadFrom(moduleAssemblyPath);
-            var iModuleName = typeof(IModule).FullName;
-            var moduleFullNames = new List<string>();
+            Assembly asm = Assembly.LoadFrom(moduleAssemblyPath);
+            string iModuleName = typeof(IModule).FullName;
+            List<string> moduleFullNames = new List<string>();
             foreach (Type t in asm.GetTypes())
             {
                 // アセンブリ内のすべての型について、publicなModuleクラスであるかどうかを調べる

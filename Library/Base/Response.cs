@@ -14,8 +14,10 @@ namespace SakuraBridge.Library
         /// <summary>
         /// ステータス文字列 (例: "PLUGIN/2.0 200 OK") 
         /// </summary>
-        public string Status {
-            get {
+        public string Status
+        {
+            get
+            {
                 if (!string.IsNullOrWhiteSpace(StatusExplanation))
                 {
                     return string.Format("{0} {1} {2}", Version, StatusCode, StatusExplanation);
@@ -64,7 +66,7 @@ namespace SakuraBridge.Library
         /// <param name="statusCode">ステータスコード。ここで指定した値に応じて、ステータス説明文も自動設定される</param>
         public Response(int statusCode)
         {
-            this.StatusCode = statusCode;
+            StatusCode = statusCode;
             if (CommonStatusCode.ExplanationMap.ContainsKey(statusCode))
             {
                 StatusExplanation = CommonStatusCode.ExplanationMap[statusCode];
