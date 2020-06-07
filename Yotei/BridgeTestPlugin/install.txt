@@ -1,3 +1,0 @@
-type,plugin
-name,—\’è’Ê’m
-directory,Yotei

@@ -1,3 +1,0 @@
-type,plugin
-name,DllExportTest1
-directory,DllExportTest1
